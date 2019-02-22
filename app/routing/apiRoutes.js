@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     app.post("/api/friends", function(req, res) {
         var userInput = req.body;
-        console.log(JSON.stringify(userInput));
+        console.log(userInput);
 
         var userAnswer = userInput.scores;
         console.log(userAnswer);
@@ -19,7 +19,7 @@ module.exports = function(app) {
         var totalDiff = 100;
 
         for(var i = 0; i < userData.length; i++) {
-            console.log(JSON.stringify(userData));
+            console.log(userData);
             
             var differentScore = 0;
 
