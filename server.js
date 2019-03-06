@@ -17,8 +17,8 @@ app.use(express.json());
 
 
 
-require("./app/routing/apiRoutes");
-require("./app/routing/htmlRoutes");
+require(path.join(__dirname, "./app/routing/apiRoutes"))(app);
+require(path.join(__dirname, "./app/routing/htmlRoutes"))(app);
 console.log("test");
 
 
