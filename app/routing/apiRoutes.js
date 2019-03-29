@@ -9,37 +9,56 @@ module.exports = function(app) {
 
     app.post("/api/friends", function(req, res) {
         var userInput = req.body;
-        console.log(userInput);
-
-        var userAnswer = userInput.scores;
-        console.log(userAnswer);
-
-        var nameMatch = "";
-        var imageMatch = "";
-        var totalDiff = 100;
+        for(var i = 0; i < userInput.score.length; i++) {
+            userInput.score[i] = parsent(userInput.score[i]);
+            console.log(userInput[i]);
+        }
+        friendMatch = 0;
+        difference = 100;
 
         for(var i = 0; i < userData.length; i++) {
-            console.log(userData);
-            
-            var differentScore = 0;
-
-            for(var j =0; j < userAnswer.length; j++) {
-                differentScore += Math.abs(userData[i].scores[j] - userAnswer[j]);
-            }
-            console.log(differentScore);
-
-            if(differentScore < totalDiff) {
-                totalDiff = differentScore;
-                nameMatch = userData[i].name;
-                imageMatch =userData[i].photo;
+            var totalDiff = 0;
+            for(var j = 0; j < userData[i].score.length; j++) {
+                userDiff = Math.abs(userInput[i].score[j] - userData.score[j]);
+                totalDiff += userDiff;
             }
         }
 
         userData.push(userInput);
-        res.json({
-            nameMatch: nameMatch,
-            imageMatch: imageMatch
-        });
+
+        res.json(userData[0]);
+        // console.log(userInput);
+
+        // // var userAnswer = userInput.scores;
+        // console.log(userInput);
+
+        // var nameMatch = "";
+        // var imageMatch = "";
+        // var totalDiff = 100;
+
+        // for(var i = 0; i < userInput.score.length; i++) {
+        //     userInput.score[i] = parent(userInput.score[i]);
+        //     console.log(userInput[i]);
+            
+        //     var differentScore = 0;
+
+        //     for(var j =0; j < userData[i].userAnswer.length; j++) {
+        //         differentScore += Math.abs(userAnswer[j] - userData[i].score[j]);
+        //     }
+        //     console.log(differentScore);
+
+        //     if(differentScore < totalDiff) {
+        //         totalDiff = differentScore;
+        //         nameMatch = userAnswer[i].name;
+        //         imageMatch =userAnswer[i].photo;
+        //     }
+        // }
+
+        // userData.push(userAnswer);
+        // res.json({
+        //     nameMatch: nameMatch,
+        //     imageMatch: imageMatch
+        // });
     });
 };
 
